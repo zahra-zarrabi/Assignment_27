@@ -8,23 +8,28 @@ from mtcnn.mtcnn import MTCNN
 
 image=cv2.imread('mr_bean.jpeg',cv2.IMREAD_GRAYSCALE)
 
-def my_noise():
-    rows, col= image.shape
+def my_noise(img):
+    rows, col= img.shape
     number = 1
-    for i in range(rows):
-        for j in range(col):
-            rnd = random.randint(0,2)
-            if rnd < number:
-                image[i, j] = 0
-            elif rnd > number:
-                image[i, j] = 255
-    return image
+    # indx = random.choices([np.arange(img.shape[0]), np.arange(img.shape[0])], k=100)
+    for m in range(rows):
+        for n in range(col):
+            rnd = random.random()
+            if rnd > 0.02:
+                continue
+            if img[m, n] < 127:
+                img[m, n] = 255
+            else:
+                img[m, n] = 0
+    return img
+
 def my_rotate(image):
+
     image=cv2.cvtColor(image,cv2.COLOR_GRAY2BGR)
     detector=MTCNN()
     result=detector.detect_faces(image)
-    detection= result[0]
-    keypoints=detection['keypoints']
+    # detection= result['box']
+    keypoints=result['keypoints']
     left_eye=keypoints['left_eye']
     right_eye = keypoints['right_eye']
     left_eye_x ,left_eye_y=left_eye
@@ -48,7 +53,7 @@ def my_rotate(image):
     return result
 
 
-noise_img=my_noise()
+noise_img=my_noise(image)
 clean_noise=cv2.medianBlur(noise_img,3)
 rotate_img=my_rotate(image)
 cv2.imshow('out',rotate_img)
