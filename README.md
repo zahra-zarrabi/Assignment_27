@@ -11,8 +11,8 @@
 <td>rotate image</td>
 </tr>
 <tr>
-<td><img src="clean.jpg"></td>
-<td><img src="clean.jpg"></td>
+<td><img src="mr_bean.jpg"></td>
+<td><img src="noise.jpg"></td>
 </tr>
 </table>
 
