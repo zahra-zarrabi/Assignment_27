@@ -7,8 +7,11 @@
 <tr>
 <td>original image</td>
 <td>noise image</td>
+<td>denoise image</td>
+<td>rotate image</td>
 </tr>
 <tr>
+<td><img src="clean.jpg"></td>
 <td><img src="clean.jpg"></td>
 </tr>
 </table>
